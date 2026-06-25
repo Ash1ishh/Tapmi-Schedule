@@ -3,7 +3,7 @@ import Layout from '../components/Layout';
 import { COURSES, COURSE_COLORS, getSessionsForDate, getAllScheduledDates, TIME_SLOTS } from '../lib/timetable';
 
 function toDateStr(d) {
-  return d.toISOString().split('T')[0];
+  return d.toLocaleDateString("en-CA", { timeZone: "Asia/Kolkata" });
 }
 
 const TERM_START = new Date('2026-06-22');
