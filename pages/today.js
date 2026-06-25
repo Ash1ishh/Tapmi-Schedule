@@ -9,7 +9,7 @@ import {
 } from "../lib/timetable";
 
 function toDateStr(d) {
-  return d.toISOString().split("T")[0];
+  return d.toLocaleDateString("en-CA", { timeZone: "Asia/Kolkata" });
 }
 
 // ─── Session Card ─────────────────────────────────────────────────────────────
