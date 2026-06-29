@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Theme variables ── */
+:root {
+  --bg:        #0d0d0d;
+  --bg2:       #161616;
+  --bg3:       #1e1e1e;
+  --border:    #2a2a2a;
+  --border2:   #333333;
+  --text:      #f0ece4;
+  --text2:     #a89880;
+  --text3:     #5a4f42;
+  --red:       #9B1B1B;
+  --redlt:     #C0392B;
+  --gold:      #B8960C;
+  --goldlt:    #D4AC0D;
+  --green:     #1A6B3C;
+  --greenlt:   #27AE60;
+}
+
+html.light {
+  --bg:        #FDF6E3;
+  --bg2:       #F5EDD0;
+  --bg3:       #EDE3C5;
+  --border:    #D8C99A;
+  --border2:   #C9B87A;
+  --text:      #1a1208;
+  --text2:     #5a4020;
+  --text3:     #9a7040;
+  --red:       #7B1010;
+  --redlt:     #A0241C;
+  --gold:      #8B6A00;
+  --goldlt:    #A07A00;
+  --green:     #0F4A26;
+  --greenlt:   #1A6B3C;
+}
+
+html.system { /* inherits from OS media query */ }
+
+@media (prefers-color-scheme: light) {
+  html.system {
+    --bg:        #FDF6E3;
+    --bg2:       #F5EDD0;
+    --bg3:       #EDE3C5;
+    --border:    #D8C99A;
+    --border2:   #C9B87A;
+    --text:      #1a1208;
+    --text2:     #5a4020;
+    --text3:     #9a7040;
+    --red:       #7B1010;
+    --redlt:     #A0241C;
+    --gold:      #8B6A00;
+    --goldlt:    #A07A00;
+    --green:     #0F4A26;
+    --greenlt:   #1A6B3C;
+  }
+}
+
+@layer base {
+  body {
+    background-color: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+}
+
+@layer components {
+  .card {
+    background-color: var(--bg2);
+    border: 1px solid var(--border);
+    border-radius: 0.75rem;
+  }
+  .card-inner {
+    background-color: var(--bg3);
+    border: 1px solid var(--border2);
+    border-radius: 0.5rem;
+  }
+  .btn-primary {
+    background-color: var(--red);
+    color: #fff;
+    font-weight: 600;
+    border-radius: 0.75rem;
+    padding: 0.875rem 1.5rem;
+    font-size: 0.875rem;
+    transition: opacity 0.15s;
+  }
+  .btn-primary:hover { opacity: 0.85; }
+  .btn-primary:disabled { opacity: 0.35; cursor: not-allowed; }
+  .input {
+    background-color: var(--bg3);
+    border: 1px solid var(--border2);
+    border-radius: 0.75rem;
+    padding: 0.875rem 1rem;
+    font-size: 0.875rem;
+    color: var(--text);
+    width: 100%;
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .input:focus { border-color: var(--gold); }
+  .input::placeholder { color: var(--text3); }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 3px; height: 3px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: var(--border2); border-radius: 2px; }
+
+/* Safe area */
+.pb-safe { padding-bottom: env(safe-area-inset-bottom, 16px); }
+
+/* Modal overlay */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.72);
+  z-index: 50;
+  display: flex;
+  align-items: flex-end;
+}
+.modal-sheet {
+  background: var(--bg2);
+  border-radius: 1.25rem 1.25rem 0 0;
+  width: 100%;
+  max-width: 32rem;
+  margin: 0 auto;
+  padding: 1.25rem;
+  max-height: 90vh;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Fixed modal - always scrollable, never cut off by nav */
+.modal-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  background: rgba(0,0,0,0.8) !important;
+  z-index: 200 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: flex-end !important;
+  align-items: center !important;
+}
+.modal-sheet {
+  background: var(--bg2) !important;
+  border-radius: 20px 20px 0 0 !important;
+  width: 100% !important;
+  max-width: 480px !important;
+  padding: 20px 20px 40px !important;
+  max-height: 82vh !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch !important;
+  box-sizing: border-box !important;
+}
